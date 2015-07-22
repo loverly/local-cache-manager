@@ -7,7 +7,7 @@
     "email": "christopher.coles@lover.ly"
   },
   "license": "MIT",
-  "main": "lib/CollectionManager.js",
+  "main": "lib/CacheManager.js",
   "directories": {
     "example": "examples",
     "test": "tests"
