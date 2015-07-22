@@ -1,26 +1,34 @@
-var garbageCollector = require('../lib/GarbageCollector'),
-    objectSerializer = require('../lib/ObjectSerializer'),
-    setSerializer = require('../lib/SetSerializer'),
-    cache = require('../lib/CacheManager');
+var GarbageCollector = require('../lib/GarbageCollector'),
+    ObjectSerializer = require('../lib/ObjectSerializer'),
+    SetSerializer = require('../lib/SetSerializer'),
+    Cache = require('../lib/CacheManager'),
+    Tamp = require('tamp');
 
 
 var opts = {name: 'localManager', debug: true};
 
 var localStorageObj = {};
-localStorageObj.localStorage = {};
+    localStorageObj.localStorage = {};
 
 localStorageObj.setItem = function(key, value) {
   localStorageObj[key] = value;
 };
 
-var g = new garbageCollector();
-var objS = new objectSerializer();
-var setS = new setSerializer();
+var g = new GarbageCollector();
+var objS = new ObjectSerializer();
+var setS = new SetSerializer(Tamp());
 
-var c = new cache(opts, localStorageObj, g, objS, setS);
+console.log(setS);
+
+var c = new Cache(opts, localStorageObj, g, objS, setS);
 
 
+//set an object in the cache
 c.setObject('hello', 'good');
+
+//set categorical sets in the cache
+c.setCategoricalSets('hello', [1,2,3,4,54,6]);
+c.setCategoricalSets('hello', ['1', '2', '3', '4', '54', '6']);
 
 console.log(c);
 
