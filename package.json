@@ -1,0 +1,34 @@
+{
+  "name": "cache-man",
+  "version": "0.0.0",
+  "description": "A wrapper for the localStorage that caches sets of data and individual objects.",
+  "author": {
+    "name": "Christopher Coles",
+    "email": "christopher.coles@lover.ly"
+  },
+  "license": "MIT",
+  "main": "lib/CollectionManager.js",
+  "directories": {
+    "example": "examples",
+    "test": "tests"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/loverly/cache-man.git"
+  },
+  "keywords": [
+    "local",
+    "storage",
+    "cache",
+    "cache",
+    "manager",
+    "serialization",
+    "process",
+    "categorical",
+    "sets"
+  ],
+  "bugs": {
+    "url": "https://github.com/loverly/cache-man/issues"
+  },
+  "homepage": "https://github.com/loverly/cache-man"
+}
