@@ -16,9 +16,8 @@ localStorageObj.setItem = function(key, value) {
 
 var g = new GarbageCollector();
 var objS = new ObjectSerializer();
-var setS = new SetSerializer(Tamp());
+var setS = new SetSerializer(Tamp);
 
-console.log(setS);
 
 var c = new Cache(opts, localStorageObj, g, objS, setS);
 
