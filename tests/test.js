@@ -26,70 +26,45 @@ var setS = new SetSerializer(Tamp);
 // instantiates a new cache
 var c = new Cache(opts, localStorageObj, g, objS, setS);
 
+//console.log(c, 'CacheMan')
+
 
 /**************** Tests to Validate Use Cases ******************/
 //set an object in the cache
 c.setObject('hello', 'good');
 
-var article = {
+var article1 = {
     _ObjectID: '559208d8a1e2c35fbe2709bd',
     id: 28714,
-    hash: '410Dd',
     published: '2015-04-24T21:05:41.000Z',
     modified: '2015-06-30T03:13:20.688Z',
     created: '2015-04-24T19:09:38.000Z',
     title: 'Wait, Is Lea Michele Making Cat Weddings a Real Thing?',
-    slug: 'wait-is-lea-michele-making-cat-weddings-a-real-thing',
-    excerpt: '',
-    status: 'published',
-    author: 'loverly',
-    primary_category: 'Celebrity + Buzz',
-    url_category: 'All',
-    keywords: null,
-    meta_title: 'Wait, Is Lea Michele Making Cat Weddings a Real Thing?',
-    meta_description: 'Looks like someone iss getting married (and it is not Lea).',
-    browse_more_link: null,
-    browse_more_text: null,
     desktop_cover_image: 'https://19fe8458de3b63a94f81-1ed88f26861922227a1edea35bb56ecc.ssl.cf2.rackcdn.com/thumbnails_390/86655_greatcatsby_1396311319_251.jpg',
     mobile_cover_image: 'https://19fe8458de3b63a94f81-1ed88f26861922227a1edea35bb56ecc.ssl.cf2.rackcdn.com/thumbnails_390/86655_greatcatsby_1396311319_251.jpg',
-    social_image: 'https://19fe8458de3b63a94f81-1ed88f26861922227a1edea35bb56ecc.ssl.cf2.rackcdn.com/thumbnails_390/86655_greatcatsby_1396311319_251.jpg',
-    bundle_id: 94665,
-    body: [
-        {
-            type: 'paragraph',
-            inlineElements: [
-                {
-                    type: 'text',
-                    text: ''
-                },
-                {
-                    type: 'em',
-                    text: 'maybe'
-                },
-                {
-                    type: 'text',
-                    text: 'it was a joke...) and now it looks like Lea might actually be taking cat nuptials mainstream.'
-                }
-            ]
-        }
-    ]
+};
+var article2= {
+    _ObjectID: '485709245hffs',
+    id: 38445,
+    published: '2016-12-23T21:08:445.0Z',
+    modified: '2015-03-20T04:10:10.6Z',
+    created: '2014-07-281980:38.0Z',
+    title: 'Who Done It?',
+    desktop_cover_image: 'https://19fe8458de3b63a94f81-1ed88f26861922227a1edea35bb56ecc.ssl.cf2.rackcdn.com/thumbnails_390/new.jpg',
+    mobile_cover_image: 'https://19fe8458de3b63a94f81-1ed88f26861922227a1edea35bb56ecc.ssl.cf2.rackcdn.com/thumbnails_390/new.jpg',
 };
 
 var itemsToSet = [];
 
-for (var i = 0; i < 5; i++) {
-    itemsToSet.push(article)
+for (var i = 0; i < 2; i++) {
+    itemsToSet.push(article1);
+    itemsToSet.push(article2);
 }
-
-//console.log('Items to set', itemsToSet);
 
 //set categorical sets in the cache
 //c.setCategoricalSets('hello', [1,2,3,4,54,6]);
 c.setCategoricalSets('hello', itemsToSet);
 
-
-
-console.log('Cache-Man: ', c);
 
 
 
