@@ -2,7 +2,8 @@ var GarbageCollector = require('../lib/GarbageCollector'),
     ObjectSerializer = require('../lib/ObjectSerializer'),
     SetSerializer = require('../lib/SetSerializer'),
     Cache = require('../lib/CacheManager'),
-    Tamp = require('tamp');
+    Encoder = require('tamp'),
+    Decoder = require('../lib/TamperDecoder');
 
 //set up local Storage options
 var opts = {name: 'localManager', debug: true};
@@ -27,7 +28,7 @@ localStorageObj.getItem = function(key) {
 // this implements the Builder pattern to build all objects needed
 var g = new GarbageCollector();
 var objS = new ObjectSerializer();
-var setS = new SetSerializer(Tamp);
+var setS = new SetSerializer(Encoder, Decoder);
 
 // instantiates a new cache
 var c = new Cache(opts, localStorageObj, g, objS, setS);
