@@ -36,6 +36,10 @@ var c = new Cache(opts, localStorageObj, g, objS, setS);
 /**************** Tests to Validate Use Cases ******************/
 //set an object in the cache
 c.setObject('key-obj', {1: 'a', 2: 'b', 3: 'c'});
+//console.log('Cache', c)
+
+//var b = c.getObject('key-obj');
+//console.log('Cache, ', b);
 
 var article1 = {
     _ObjectID: '559208d8a1e2c35fbe2709bd',
@@ -66,16 +70,18 @@ for (var i = 0; i < 2; i++) {
 }
 
 //set categorical sets in the cache
-//c.setCategoricalSets('hello', [1,2,3,4,54,6]);
+c.setCategoricalSets('hello', [1,2,3,4,54,6]);
 c.setCategoricalSets('key-sets', itemsToSet);
 
 // get an object in the cache
 //var o = c.getObject('key-obj');
-//console.log('O', o)
+//console.log('getObject()--> returns', o)
 
  //get Categorical Sets in the cache
-var ll  = c.getCategoricalSets('key-sets');
-console.log(ll);
+//var ll  = c.getCategoricalSets('key-sets');
+//console.log('Categorical sets, ', ll);
+
+console.log('Cache', c);
 
 
 
