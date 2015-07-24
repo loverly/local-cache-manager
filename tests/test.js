@@ -70,7 +70,6 @@ for (var i = 0; i < 2; i++) {
 }
 
 //set categorical sets in the cache
-c.setCategoricalSets('hello', [1,2,3,4,54,6]);
 c.setCategoricalSets('key-sets', itemsToSet);
 
 // get an object in the cache
@@ -78,7 +77,7 @@ c.setCategoricalSets('key-sets', itemsToSet);
 //console.log('getObject()--> returns', o)
 
  //get Categorical Sets in the cache
-//var ll  = c.getCategoricalSets('key-sets');
+var ll  = c.getCategoricalSets('key-sets');
 //console.log('Categorical sets, ', ll);
 
 console.log('Cache', c);
