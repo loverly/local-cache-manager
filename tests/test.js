@@ -10,18 +10,26 @@ var opts = {name: 'localManager', debug: true};
 
 // mocks window.localStorage object
 var localStorageObj = {};
-    localStorageObj.localStorage = {};
+var ls = localStorageObj.localStorage = {};
+
+
+// sets a limit on the number of items that can be added to the cache,
+// for garbage collecting purposes.
+
 
 // mocks localStorage public API setItem()
 localStorageObj.setItem = function(key, value) {
-  localStorageObj[key] = value;
+    ls[key] = value;
 };
 
 // mocks localStorage public API getItem()_
 localStorageObj.getItem = function(key) {
     //console.log(localStorageObj[key]);
-  return localStorageObj[key];
+  return ls[key];
 };
+
+//localStorageObj.setItem('key', 'value');
+var a = localStorageObj.getItem('key');
 
 // instantiates all object classes being used
 // abstract classes are not instantiated and are extended
@@ -69,23 +77,28 @@ itemsToSet.push(article1);
 itemsToSet.push(article2);
 //}
 
+
 //set categorical sets in the cache
-c.setCategoricalSets('key-sets', itemsToSet, true);
+c.setCategoricalSets('key-sets', itemsToSet);
 
 // get an object in the cache
 //var o = c.getObject('key-obj');
 //console.log('getObject()--> returns', o)
 
  //get Categorical Sets in the cache
-var ll  = c.getCategoricalSets('key-sets');
+//var ll  = c.getCategoricalSets('key-sets');
 //console.log('Categorical sets, ', ll);
 
-console.log('Cache', c);
+var lsLimit = localStorageObj.maxPropLimit = 2;
+var lsLength = Object.keys(localStorageObj.localStorage).length;
+
+//if (lsLength >= lsLimit) {
+//    throw Error('Local Storage Limit has been reached, please be advised.')
+//}
 
 
+var orderCachedById = {'28714': 0, '38445': 1};
 
+//console.log('Garbage Collector', g);
 
-
-
-
-
+g.cleanup(localStorageObj.localStorage, orderCachedById);
