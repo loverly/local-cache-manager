@@ -64,13 +64,13 @@ var article2= {
 
 var itemsToSet = [];
 
-for (var i = 0; i < 2; i++) {
-    itemsToSet.push(article1);
-    itemsToSet.push(article2);
-}
+//for (var i = 0; i < 1; i++) {
+itemsToSet.push(article1);
+itemsToSet.push(article2);
+//}
 
 //set categorical sets in the cache
-c.setCategoricalSets('key-sets', itemsToSet);
+c.setCategoricalSets('key-sets', itemsToSet, true);
 
 // get an object in the cache
 //var o = c.getObject('key-obj');
