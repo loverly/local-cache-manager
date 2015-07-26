@@ -38,8 +38,13 @@ var c = new Cache(opts, localStorageObj, g, objS, setS);
 
 /**************** Tests to Validate Use Cases ******************/
 //set an object in the cache
-c.setObject('key-obj', {1: 'a', 2: 'b', 3: 'c'});
-//console.log('Cache', c)
+c.setObject('key-1', {1: 'a', 2: 'b', 3: 'c'}, 'mobile-articles');
+
+c.setObject('key-3', {4: 'a', 5: 'b', 6: 'd'}, 'mobile-articles');
+
+//c.setObject('key-3', {1: 'a', 2: 'b', 3: 'd'});
+
+console.log('Cache', c.storageSpace.localStorage)
 
 //var b = c.getObject('key-obj');
 //console.log('Cache, ', b);
@@ -74,7 +79,7 @@ for (var i = 0; i < 13; i++) {
 
 
 //set categorical sets in the cache
-c.setCategoricalSets('key-sets', itemsToSet);
+//c.setCategoricalSets('key-sets', itemsToSet);
 
 // get an object in the cache
 //var o = c.getObject('key-obj');
