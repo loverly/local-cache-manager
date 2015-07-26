@@ -12,11 +12,6 @@ var opts = {name: 'localManager', debug: true};
 var localStorageObj = {};
 var ls = localStorageObj.localStorage = {};
 
-
-// sets a limit on the number of items that can be added to the cache,
-// for garbage collecting purposes.
-
-
 // mocks localStorage public API setItem()
 localStorageObj.setItem = function(key, value) {
     ls[key] = value;
@@ -72,10 +67,10 @@ var article2= {
 
 var itemsToSet = [];
 
-//for (var i = 0; i < 1; i++) {
-itemsToSet.push(article1);
-itemsToSet.push(article2);
-//}
+for (var i = 0; i < 13; i++) {
+    itemsToSet.push(article1);
+    itemsToSet.push(article2);
+}
 
 
 //set categorical sets in the cache
@@ -92,13 +87,16 @@ c.setCategoricalSets('key-sets', itemsToSet);
 var lsLimit = localStorageObj.maxPropLimit = 2;
 var lsLength = Object.keys(localStorageObj.localStorage).length;
 
+// sets a limit on the number of items that can be added to the cache,
+// for garbage collecting purposes.
+
 //if (lsLength >= lsLimit) {
 //    throw Error('Local Storage Limit has been reached, please be advised.')
 //}
 
 
-var orderCachedById = {'28714': 0, '38445': 1};
+//var orderCachedById = {'28714': 0, '38445': 1};
 
 //console.log('Garbage Collector', g);
 
-g.cleanup(localStorageObj.localStorage, orderCachedById);
+//g.cleanup(localStorageObj.localStorage, orderCachedById);
