@@ -97,7 +97,7 @@ for (var i = 0; i < 13; i++) {
 c.setCategoricalSets('key-set', itemsToSet, 'items-to-set');
 
 
-//console.log(c.localStorageObj.localStorage)
+console.log(c)
 // get an object in the cache
 //var o = c.getObject('key-obj');
 //console.log('getObject()--> returns', o)
