@@ -78,10 +78,13 @@ for (var i = 0; i < 13; i++) {
     itemsToSet.push(article2);
 }
 
-//console.log(itemsToSet, 'Items')
+//console.log(itemsToSet.length, 'Items')
 
 //set categorical sets in the cache
-c.setCategoricalSets('key-sets', itemsToSet, 'items-to-set');
+c.setCategoricalSets('key-set', itemsToSet, 'items-to-set');
+
+console.log('cache', c.storageSpace.localStorage)
+
 //console.log(c.localStorageObj.localStorage)
 // get an object in the cache
 //var o = c.getObject('key-obj');
