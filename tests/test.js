@@ -97,14 +97,17 @@ for (var i = 0; i < 13; i++) {
 c.setCategoricalSets('key-set', itemsToSet, 'items-to-set');
 
 
-console.log(c)
+//console.log(c.storageSpace.localStorage['items-to-set'], 'Items to set')
 // get an object in the cache
-//var o = c.getObject('key-obj');
+
+//TODO include check to see if you are giving an item or entire set
+//var o = c.getObject('key-3', 'articles');
 //console.log('getObject()--> returns', o)
 
  //get Categorical Sets in the cache
-//var ll  = c.getCategoricalSets('key-sets');
-//console.log('Categorical sets, ', ll);
+var ll  = c.getCategoricalSets('key-set-id-1', 'items-to-set');
+
+console.log('Categorical sets, ', ll);
 
 
 //var orderCachedById = {'28714': 0, '38445': 1};
