@@ -17,14 +17,17 @@ localStorageObj.setItem = function(key, value) {
     ls[key] = value;
 };
 
-// mocks localStorage public API getItem()_
+// mocks localStorage public API getItem()
 localStorageObj.getItem = function(key) {
     //console.log(localStorageObj[key]);
   return ls[key];
 };
 
-//localStorageObj.setItem('key', 'value');
-var a = localStorageObj.getItem('key');
+// mocks localStorage public API removeItem()
+localStorageObj.removeItem = function(key) {
+    delete ls[key];
+};
+
 
 // instantiates all object classes being used
 // abstract classes are not instantiated and are extended
@@ -38,13 +41,11 @@ var c = new Cache(opts, localStorageObj, g, objS, setS);
 
 /**************** Tests to Validate Use Cases ******************/
 //set an object in the cache
-c.setObject('key-1', {1: 'a', 2: 'b', 3: 'c'}, 'mobile-articles');
-
 c.setObject('key-3', {4: 'a', 5: 'b', 6: 'd'}, 'mobile-articles');
+c.setObject('key-1', {1: 'a', 2: 'b', 3: 'c'}, 'mobile-articles');
+c.setObject('key-2', {7: 'a', 8: 'b', 9: 'c'}, 'mobile-articles');
+c.setObject('key-3', {1: 'a', 2: 'b', 3: 'd'}, 'articles');
 
-//c.setObject('key-3', {1: 'a', 2: 'b', 3: 'd'});
-
-console.log('Cache', c.storageSpace.localStorage)
 
 //var b = c.getObject('key-obj');
 //console.log('Cache, ', b);
@@ -77,10 +78,11 @@ for (var i = 0; i < 13; i++) {
     itemsToSet.push(article2);
 }
 
+//console.log(itemsToSet, 'Items')
 
 //set categorical sets in the cache
-//c.setCategoricalSets('key-sets', itemsToSet);
-
+c.setCategoricalSets('key-sets', itemsToSet, 'items-to-set');
+//console.log(c.localStorageObj.localStorage)
 // get an object in the cache
 //var o = c.getObject('key-obj');
 //console.log('getObject()--> returns', o)
