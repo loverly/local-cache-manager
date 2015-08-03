@@ -10,18 +10,35 @@ var opts = {name: 'localManager', debug: true};
 
 // mocks window.localStorage object
 var localStorageObj = {};
-    localStorageObj.localStorage = {};
+var ls = localStorageObj.localStorage = {};
+//localStorageObj.maxPropLimit = 2;
+//localStorageObj.props = 0;
+
+// sets a limit on the number of items that can be added to the cache,
+// for garbage collecting purposes.
 
 // mocks localStorage public API setItem()
 localStorageObj.setItem = function(key, value) {
-  localStorageObj[key] = value;
+    ls[key] = value;
+    //localStorageObj.props += 1;
+
+    // sets limit on the number of items that can be added to the cache
+    //if (localStorageObj.props == localStorageObj.maxPropLimit) {
+    //    throw Error('Limit has been reached for cache.');
+    //}
 };
 
-// mocks localStorage public API getItem()_
+// mocks localStorage public API getItem()
 localStorageObj.getItem = function(key) {
     //console.log(localStorageObj[key]);
-  return localStorageObj[key];
+  return ls[key];
 };
+
+// mocks localStorage public API removeItem()
+localStorageObj.removeItem = function(key) {
+    delete ls[key];
+};
+
 
 // instantiates all object classes being used
 // abstract classes are not instantiated and are extended
@@ -35,7 +52,16 @@ var c = new Cache(opts, localStorageObj, g, objS, setS);
 
 /**************** Tests to Validate Use Cases ******************/
 //set an object in the cache
-c.setObject('key-obj', {1: 'a', 2: 'b', 3: 'c'});
+c.setObject('key-3', {1: 'a', 2: 'b', 3: 'd'}, 'articles');
+
+c.setObject('key-1', {1: 'a', 2: 'b', 3: 'c'}, 'mobile-articles');
+
+c.setObject('key-2', {7: 'a', 8: 'b', 9: 'c'}, 'mobile-articles');
+
+c.setObject('key-3', {4: 'a', 5: 'b', 6: 'd'}, 'mobile-articles');
+
+//var b = c.getObject('key-obj');
+//console.log('Cache, ', b);
 
 var article1 = {
     _ObjectID: '559208d8a1e2c35fbe2709bd',
@@ -47,6 +73,7 @@ var article1 = {
     desktop_cover_image: 'https://19fe8458de3b63a94f81-1ed88f26861922227a1edea35bb56ecc.ssl.cf2.rackcdn.com/thumbnails_390/86655_greatcatsby_1396311319_251.jpg',
     mobile_cover_image: 'https://19fe8458de3b63a94f81-1ed88f26861922227a1edea35bb56ecc.ssl.cf2.rackcdn.com/thumbnails_390/86655_greatcatsby_1396311319_251.jpg',
 };
+
 var article2= {
     _ObjectID: '485709245hffs',
     id: 38445,
@@ -60,27 +87,32 @@ var article2= {
 
 var itemsToSet = [];
 
-for (var i = 0; i < 2; i++) {
+for (var i = 0; i < 13; i++) {
     itemsToSet.push(article1);
     itemsToSet.push(article2);
 }
 
-//set categorical sets in the cache
-//c.setCategoricalSets('hello', [1,2,3,4,54,6]);
-c.setCategoricalSets('key-sets', itemsToSet);
+//console.log(itemsToSet.length, 'Items')
 
+//set categorical sets in the cache
+c.setCategoricalSets('key-set', itemsToSet, 'items-to-set');
+
+
+//console.log(c.storageSpace.localStorage['items-to-set'], 'Items to set')
 // get an object in the cache
-//var o = c.getObject('key-obj');
-//console.log('O', o)
+
+//TODO include check to see if you are giving an item or entire set
+//var o = c.getObject('key-3', 'articles');
+//console.log('getObject()--> returns', o)
 
  //get Categorical Sets in the cache
-var ll  = c.getCategoricalSets('key-sets');
-console.log(ll);
+var ll  = c.getCategoricalSets('key-set-id-1', 'items-to-set');
+
+console.log('Categorical sets, ', ll)
 
 
+//var orderCachedById = {'28714': 0, '38445': 1};
 
+//console.log('Garbage Collector', g);
 
-
-
-
-
+//g.cleanup(localStorageObj.localStorage, orderCachedById);
