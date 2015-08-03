@@ -73,6 +73,7 @@ var article1 = {
     desktop_cover_image: 'https://19fe8458de3b63a94f81-1ed88f26861922227a1edea35bb56ecc.ssl.cf2.rackcdn.com/thumbnails_390/86655_greatcatsby_1396311319_251.jpg',
     mobile_cover_image: 'https://19fe8458de3b63a94f81-1ed88f26861922227a1edea35bb56ecc.ssl.cf2.rackcdn.com/thumbnails_390/86655_greatcatsby_1396311319_251.jpg',
 };
+
 var article2= {
     _ObjectID: '485709245hffs',
     id: 38445,
@@ -107,7 +108,7 @@ c.setCategoricalSets('key-set', itemsToSet, 'items-to-set');
  //get Categorical Sets in the cache
 var ll  = c.getCategoricalSets('key-set-id-1', 'items-to-set');
 
-console.log('Categorical sets, ', ll);
+console.log('Categorical sets, ', ll)
 
 
 //var orderCachedById = {'28714': 0, '38445': 1};
