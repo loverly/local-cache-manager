@@ -1,54 +1,26 @@
 var GarbageCollector = require('./lib/GarbageCollector'),
+  LocalStorage = require('./tests/mock-local-storage/LocalStorage'),
   ObjectSerializer = require('./lib/ObjectSerializer'),
   SetSerializer = require('./lib/SetSerializer'),
   Cache = require('./lib/CacheManager'),
   Encoder = require('tamp'),
   Decoder = require('./third-party/TamperDecoder');
 
-//set up local Storage options
-var opts = {name: 'localManager', debug: true};
-
-// mocks window.localStorage object
-var localStorageObj = {};
-var ls = localStorageObj.localStorage = {};
-//localStorageObj.maxPropLimit = 2;
-//localStorageObj.props = 0;
-
-// sets a limit on the number of items that can be added to the cache,
-// for garbage collecting purposes.
-
-// mocks localStorage public API setItem()
-localStorageObj.setItem = function (key, value) {
-  ls[key] = value;
-  //localStorageObj.props += 1;
-
-  // sets limit on the number of items that can be added to the cache
-  //if (localStorageObj.props == localStorageObj.maxPropLimit) {
-  //    throw Error('Limit has been reached for cache.');
-  //}
-};
-
-// mocks localStorage public API getItem()
-localStorageObj.getItem = function (key) {
-  //console.log(localStorageObj[key]);
-  return ls[key];
-};
-
-// mocks localStorage public API removeItem()
-localStorageObj.removeItem = function (key) {
-  delete ls[key];
-};
-
-
 // instantiates all object classes being used
 // abstract classes are not instantiated and are extended
 // this implements the Builder pattern to build all objects needed
-var g = new GarbageCollector();
-var objS = new ObjectSerializer();
-var setS = new SetSerializer(Encoder, Decoder);
+var g = new GarbageCollector(),
+    localStorage = new LocalStorage,
+    objS = new ObjectSerializer(),
+    setS = new SetSerializer(Encoder, Decoder);
 
-// instantiates a new cache
-var c = new Cache(opts, localStorageObj, g, objS, setS);
+//set up CacheManager() options
+var opts = {debug: true};
+
+  //console.log(localStorage.localStorage)
+
+// instantiates a new CacheManager()
+    var c = new Cache(localStorage, g, objS, setS, opts);
 
 /**************** Tests to Validate Use Cases ******************/
 //set an object in the cache
@@ -97,10 +69,6 @@ for (var i = 0; i < 13; i++) {
 //set categorical sets in the cache
 c.setCategoricalSets('key-set', itemsToSet, 'items-to-set');
 
-
-//console.log(c.storageSpace.localStorage['items-to-set'], 'Items to set')
-// get an object in the cache
-
 //TODO include check to see if you are giving an item or entire set
 //var o = c.getObject('key-3', 'articles');
 //console.log('getObject()--> returns', o)
@@ -108,7 +76,7 @@ c.setCategoricalSets('key-set', itemsToSet, 'items-to-set');
 //get Categorical Sets in the cache
 var ll = c.getCategoricalSets('key-set-id-1', 'items-to-set');
 
-console.log('Categorical sets, ', ll)
+console.log('Categorical sets, ', ll);
 
 
 //var orderCachedById = {'28714': 0, '38445': 1};
