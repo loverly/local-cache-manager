@@ -5,7 +5,7 @@ var GarbageCollector = require('../lib/GarbageCollector'),
     SetSerializer = require('../lib/SetSerializer'),
 
     Encoder = require('tamp'),
-    Decoder = require('../third-party/TamperDecoder'),
+    Decoder = require('../public/TamperDecoder'),
 
     Cache = require('../lib/CacheManager');
 
