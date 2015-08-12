@@ -30,5 +30,14 @@
   "bugs": {
     "url": "https://github.com/loverly/cache-man/issues"
   },
-  "homepage": "https://github.com/loverly/cache-man"
+  "homepage": "https://github.com/loverly/cache-man",
+  "dependencies": {
+    "atob": "^1.1.2",
+    "gulp": "^3.9.0",
+    "gulp-concat": "^2.6.0",
+    "mocha": "^2.2.5",
+    "requirejs": "^2.1.20",
+    "tamp": "0.0.3",
+    "underscore": "^1.8.3"
+  }
 }

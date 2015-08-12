@@ -58,6 +58,7 @@ Private API functionality
 
 JSON.stringify(localStorage).length() --> intensive; don't need to expose to public api for capacity unless for debugging
 
+//TODO: investigate protobuf-for-nde module for serializing individual objects
 
 window.localStorage = {
 
