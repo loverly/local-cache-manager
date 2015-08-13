@@ -1,3 +1,31 @@
+# CacheMan
+
+# Building with Requirejs
+
+Just run:
+
+    > node node_modules/.bin/r.js -o build.js
+
+Take a look at the config and the build directory - that should be the output
+of Gulp.
+
+We'll have to do some refactoring once you have gulp setup to turn it into a pure
+AMD module vs a module + a main script.
+
+
+
+# Tamper Notes
+
+We can't use this just yet because we'll have to turn both into client-side
+compatible modules.  Right now they use node tools such as the `Buffer` class,
+which we would need to replicate on the clients side if we really wanted that
+functionality.
+
+So the categorical sets features will have to wait for a phase 2.
+
+
+
+
 # local-cache-manager
 
 Serializer
